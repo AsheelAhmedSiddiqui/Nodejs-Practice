@@ -8,6 +8,17 @@ const middleware = (req, res, next) => {
 	next();
 };
 
+const todoArr = [
+	{
+		todo: "first",
+		isCompleted: "false",
+	},
+	{
+		todo: "second",
+		isCompleted: "true",
+	},
+];
+
 app.use(express.json());
 app.use(middleware);
 
@@ -16,17 +27,11 @@ app.get("/", (req, res) => {
 	res.send("<h1>Hello World</h1>");
 });
 
-app.put("/", (req, res) => {
-	console.log("put ki request");
-});
-
-app.delete("/", (req, res) => {
-	console.log("delete ki request");
-});
-
 app.post("/", (req, res) => {
+	const newTodo = req.body;
+	todoArr.push(newTodo);
 	console.log("post ki request" + req.body);
-	res.send("post ki request");
+	res.status(201).json(newTodo);
 });
 
 app.listen(process.env.PORT, () =>
