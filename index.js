@@ -24,7 +24,7 @@ app.use(middleware);
 
 app.get("/", (req, res) => {
 	console.log("req.accepted=>");
-	res.send("<h1>Hello World</h1>");
+	res.status(200).json(todoArr);
 });
 
 app.post("/", (req, res) => {
