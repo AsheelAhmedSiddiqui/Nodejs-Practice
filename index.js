@@ -5,10 +5,11 @@ const app = express();
 const PORT = 3000;
 
 const middleware = (req, res, next) => {
-	// next();
+	next();
 };
 
-// app.use(middleware);
+app.use(express.json());
+app.use(middleware);
 
 app.get("/", (req, res) => {
 	console.log("req.accepted=>");
@@ -24,7 +25,8 @@ app.delete("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-	console.log("post ki request");
+	console.log("post ki request" + req.body);
+	res.send("post ki request");
 });
 
 app.listen(PORT, () => console.log(`Server is runing on PORT ${PORT}`));
