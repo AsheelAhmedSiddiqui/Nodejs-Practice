@@ -1,8 +1,8 @@
 import express from "express";
+import dotenv from "dotenv/config";
 
 // const { createServer } = require("node:http");
 const app = express();
-const PORT = 3000;
 
 const middleware = (req, res, next) => {
 	next();
@@ -13,7 +13,7 @@ app.use(middleware);
 
 app.get("/", (req, res) => {
 	console.log("req.accepted=>");
-	res.send("Hello World");
+	res.send("<h1>Hello World</h1>");
 });
 
 app.put("/", (req, res) => {
@@ -29,4 +29,6 @@ app.post("/", (req, res) => {
 	res.send("post ki request");
 });
 
-app.listen(PORT, () => console.log(`Server is runing on PORT ${PORT}`));
+app.listen(process.env.PORT, () =>
+	console.log(`Server is runing on PORT ${process.env.PORT}`)
+);
